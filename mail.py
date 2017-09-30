@@ -9,11 +9,12 @@ from email.header import Header
 from pw import pw
 
 
-def mail(file06,file07): #参数传入附件的文件名
+def mail_pdf(file06,file07): #参数传入附件的文件名
     ret = True
     my_sender,my_pass,my_user = pw() #传入发件邮箱、密码、收件邮箱
     try:
         print("开始生成邮件")
+        #print file06,file07
         msg=MIMEMultipart()
         #邮件正文内容
         msg.attach(MIMEText('邮件发送测试……/n不要看我...看疗效...', 'plain', 'utf-8'))
@@ -23,13 +24,13 @@ def mail(file06,file07): #参数传入附件的文件名
         #构造附件1，传送当前目录下的 file06.pdf 文件
         att1 = MIMEText(open(file06, 'rb').read(), 'base64', 'utf-8')
         att1["Content-Type"] = 'application/octet-stream'
-        att1.add_header('Content-Disposition', 'attachment',filename=file06) #filename为附件名
+        att1.add_header('Content-Disposition', 'attachment',filename = file06) #filename为附件名
         msg.attach(att1)
         # 构造附件2，传送当前目录下的 file07.pdf 文件
         att2 = MIMEText(open(file07, 'rb').read(), 'base64', 'utf-8')
         att2["Content-Type"] = 'application/octet-stream'
         print file06,file07
-        att2.add_header('Content-Disposition', 'attachment',filename=file07)
+        att2.add_header('Content-Disposition', 'attachment',filename = file07)
         msg.attach(att2)
         #发件
         print("开始发送邮件")
