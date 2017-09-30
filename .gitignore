@@ -2,3 +2,5 @@
 .DS_Store
 pw.py
 v1.0.py
+*.pyc
+*.pdf

@@ -10,13 +10,13 @@ from email.header import Header
 from pw import pw
 from content import content_title_link
 
+#将标题和链接列表ctl，转化为字符串text，以用于邮件发送
 ctl = content_title_link()
 text = ''
 n=0
 while n < len(ctl):
     text += str(ctl[n]) +'\n'
     n += 1
-
 
 ret=True
 my_sender,my_pass,my_user = pw() #传入发件邮箱、密码、收件邮箱

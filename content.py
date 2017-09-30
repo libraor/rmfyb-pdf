@@ -5,7 +5,6 @@ import re
 import urllib2
 from catch import catch_contentlink #抓取页面链接
 
-
 def content_title_link(): #生成文章标题和链接列表
     #获取并生成文章页链接
     for link in Links: #迭代Links，简化代码
@@ -45,7 +44,6 @@ def content_title_link(): #生成文章标题和链接列表
     return ctl
         
  
-
 
 
 #调取页面链接
