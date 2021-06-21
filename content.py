@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 
 import re
-import urllib2
+import urllib.request
 from catch import catch_contentlink #抓取页面链接
 
 def content_title_link(): #生成文章标题和链接列表
     #获取并生成文章页链接
     for link in Links: #迭代Links，简化代码
-        response = urllib2.urlopen(link)
-        #print response.read()  只能调用一次，好奇怪，调用第二次就没有了，必须重新“response = urllib2.urlopen(Link06)”获取
+        response = urllib.request.urlopen(link)
+        #print response.read()  只能调用一次，好奇怪，调用第二次就没有了，必须重新“response = urllib.request.urlopen(Link06)”获取
         #分析页面，获取版面标题，生成标题列表及链接    
         #正则
-        linknum = list(re.findall(r'href=content_(\d*)\.htm\?div',response.read(),re.M)) #跨行匹配，获取文章标题    
-        #print linknum 
+        linknum = list(re.findall(r'href=content_(\d*)\.htm\?div',response.read().decode('utf-8'),re.M)) #跨行匹配，获取文章标题,.decode('utf-8')解决编码问题，否则要报错    
+        print (linknum) 
         #获取文章标题
-        response = urllib2.urlopen(link)
-        title = re.findall(r'mp\d*>(.*)</div>',response.read(),re.M)   #跨行匹配，获取文章标题  
+        response = urllib.request.urlopen(link)
+        title = re.findall(r'mp\d*>(.*)</div>',response.read().decode('utf-8'),re.M)   #跨行匹配，获取文章标题  
         #生成链接
         linktocontent =['']*len(linknum) #建立一个长度为linknum列表长度的空列表
         

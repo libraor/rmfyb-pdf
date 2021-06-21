@@ -4,6 +4,7 @@
 
 from datetime import datetime
 import urllib
+from urllib.request import urlretrieve
 
 
 def catch_pdf():
@@ -18,8 +19,8 @@ def catch_pdf():
     Link07 = 'http://rmfyb.chinacourt.org/paper/images' + Ym + d + '07/' +Ymd07 #第七版链接
     #print Link06,Link07
     #保存本地
-    urllib.urlretrieve(Link06, Ymd + '06.pdf')
-    urllib.urlretrieve(Link07,Ymd + '07.pdf')
+    urlretrieve(Link06, Ymd + '06.pdf')
+    urlretrieve(Link07,Ymd + '07.pdf')
     return Ymd+'06.pdf',Ymd+'07.pdf' #返回生成的文件名
 
 def catch_contentlink():
@@ -33,6 +34,6 @@ def catch_contentlink():
     Link06 = 'http://rmfyb.chinacourt.org/paper/html' + Ym + d + Ymd06 #第六版网页链接
     Ymd07 = now.strftime('node_8.htm')
     Link07 = 'http://rmfyb.chinacourt.org/paper/html' + Ym + d + Ymd07 #第七版网页链接
-    print Link_f,Link06,Link07
+    print (Link_f,Link06,Link07)
     #保存本地
     return Link_f,Link06,Link07 #返回生成的文件名

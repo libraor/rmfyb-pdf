@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
-from pw import pw
+from pw import pw #pw.py是邮箱账号密码，不上传
 from content import content_title_link
 
 
@@ -30,7 +30,7 @@ def mail_pdf(file06,file07): #参数传入附件的文件名
         # 构造附件2，传送当前目录下的 file07.pdf 文件
         att2 = MIMEText(open(file07, 'rb').read(), 'base64', 'utf-8')
         att2["Content-Type"] = 'application/octet-stream'
-        print file06,file07
+        print (file06,file07)
         att2.add_header('Content-Disposition', 'attachment',filename = file07)
         msg.attach(att2)
         #发件
