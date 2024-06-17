@@ -11,6 +11,14 @@ from content import content_title_link
 
 
 def mail_pdf(file06,file07): #参数传入附件的文件名
+   
+    ctl = content_title_link() #将标题和链接列表ctl，转化为字符串text，以用于邮件发送
+    text = ''
+    n=0
+    while n < len(ctl):
+        text += str(ctl[n]) +'\n'
+        n += 1
+
     ret = True
     my_sender,my_pass,my_user = pw() #传入发件邮箱、密码、收件邮箱
     try:
@@ -18,7 +26,7 @@ def mail_pdf(file06,file07): #参数传入附件的文件名
         #print file06,file07
         msg=MIMEMultipart()
         #邮件正文内容
-        msg.attach(MIMEText('邮件发送测试……/n不要看我...看疗效...', 'plain', 'utf-8'))
+        msg.attach(MIMEText(text, 'plain', 'utf-8'))#text为邮件正文
         msg['From']=formataddr(["Leon",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
         msg['To'] =  Header("VIP", 'utf-8')  #括号中填写收件人昵称
         msg['Subject']="邮件测试"                # 邮件的主题，也可以说是标题
